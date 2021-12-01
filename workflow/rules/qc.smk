@@ -39,5 +39,14 @@ rule multiqc:
         ),
     log:
         "logs/multiqc.log",
-    wrapper:
-        "0.74.0/bio/multiqc"
+    ##wrapper:
+    ##    "0.74.0/bio/multiqc"
+    conda:
+        "../envs/multiqc.yaml"
+    shell:
+        "multiqc "
+        "--force "
+        "-o results/qc "
+        "-n multiqc.html "
+        "results/qc/samtools-stats "
+        ">{log} 2>&1 "
