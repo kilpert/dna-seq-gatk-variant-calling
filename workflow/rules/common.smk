@@ -17,10 +17,10 @@ configfile: "config/config.yaml"
 
 validate(config, schema="../schemas/config.schema.yaml")
 
-samples = pd.read_table(config["samples"]).set_index("sample", drop=False)
+samples = pd.read_table(config["samples"], comment='#').set_index("sample", drop=False)
 validate(samples, schema="../schemas/samples.schema.yaml")
 
-units = pd.read_table(config["units"], dtype=str).set_index(
+units = pd.read_table(config["units"], dtype=str, comment='#').set_index(
     ["sample", "unit"], drop=False
 )
 units.index = units.index.set_levels(
