@@ -52,7 +52,7 @@ rule genotype_variants:
         ref="resources/genome.fasta",
         gvcf="results/called/all.{contig}.g.vcf.gz",
     output:
-        vcf=temp("results/genotyped/all.{contig}.vcf.gz"),
+        vcf="results/genotyped/all.{contig}.vcf.gz", # temp
     params:
         extra=config["params"]["gatk"]["GenotypeGVCFs"],
     log:
