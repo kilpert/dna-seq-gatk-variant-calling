@@ -35,7 +35,7 @@ rule map_reads:
         reads=get_trimmed_reads,
         idx=rules.bwa_index.output,
     output:
-        temp("results/mapped/{sample}-{unit}.sorted.bam"),
+        "results/mapped/{sample}-{unit}.sorted.bam",
     log:
         "logs/bwa_mem/{sample}-{unit}.log",
     params:
