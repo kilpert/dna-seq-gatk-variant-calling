@@ -11,6 +11,8 @@ rule all:
         "results/plots/depths.svg",
         "results/plots/allele-freqs.svg",
 
+        expand("results/recal/merged/{sample}.bam.bai", sample=samples.index) # merged (all units) bam files
+
 
 ##### Modules #####
 

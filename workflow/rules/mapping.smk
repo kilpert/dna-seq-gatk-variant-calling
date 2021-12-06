@@ -110,3 +110,17 @@ rule samtools_index:
         "logs/samtools/index/{prefix}.log",
     wrapper:
         "0.74.0/bio/samtools/index"
+
+
+rule samtools_merge_bam:
+    input:
+        bam= lambda wildcards: get_sample_bams(wildcards),
+        #bai= lambda wildcards: [f+".bai" for f in get_sample_bams(wildcards)], # this wrapper does NOT consider bai for input!!!
+    output:
+        "results/recal/merged/{sample}.bam"
+    params:
+        ""  # optional additional parameters as string
+    threads:  # Samtools takes additional threads through its option -@
+        8  # This value - 1 will be sent to -@
+    wrapper:
+        "0.80.2/bio/samtools/merge"
